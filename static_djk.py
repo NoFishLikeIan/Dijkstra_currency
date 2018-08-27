@@ -27,8 +27,6 @@ def get_currency(list_codes, sleeping=0):
     df_rates = pd.DataFrame(rate_matrix, index=list_codes, columns=list_codes)
     return df_rates
 
-# Stolen from http://www.bogotobogo.com/python/python_Dijkstras_Shortest_Path_Algorithm.php
-
 
 matrix = np.log(get_currency(currency_codes))
 
