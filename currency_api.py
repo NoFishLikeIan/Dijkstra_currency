@@ -18,11 +18,18 @@ def currency_nxgraph(list_codes, sleeping=0, adjmatrix=False):
         for other_currency in remaining_codes:
             log_rate = np.log(c.get_rate(currency, other_currency))
             d[currency][other_currency] = {}
-            d[currency][other_currency]['rate'] = log_rate
+            d[currency][other_currency]['weights'] = log_rate
         time.sleep(0.5)
     G = nx.from_dict_of_dicts(d)
     return G
 
 
 if __name__ == '__main__':
+    import matplotlib.pyplot as plt
+    import pdb
     G = currency_nxgraph(currency_codes)
+    plt.plot()
+    nx.draw_networkx(G, pos=nx.spring_layout(G))
+    plt.savefig('currency_graph.png')
+    plt.close()
+    pdb.set_trace()
